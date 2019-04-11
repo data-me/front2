@@ -221,7 +221,7 @@ export default {
     }
   }, mounted: function () {
     var token = 'JWT ' + this.$cookies.get('token')
-    this.$http.get('http://localhost:8000/api/v1/offer',{ headers:
+    this.$http.get('https://api2-datame.herokuapp.com/api/v1/offer',{ headers:
       { Authorization: token }
       }).then((result) => {
         this.items = result.data
@@ -238,7 +238,7 @@ export default {
           var paymentId = respuesta_paypal[0].split("=")[1];
           var token_paypal = respuesta_paypal[1].split("=")[1];
           var payerID = respuesta_paypal[2].split("=")[1];
-          var url_guarda_pagos = `http://localhost:8000/api/v1/pagos/accept_paypal_payment/${paymentId}/${token_paypal}/${payerID}/`;
+          var url_guarda_pagos = `https://api2-datame.herokuapp.com/api/v1/pagos/accept_paypal_payment/${paymentId}/${token_paypal}/${payerID}/`;
           this.$http
             .get(url_guarda_pagos, { headers: { Authorization: token } })
             .then(result => {
@@ -250,7 +250,7 @@ export default {
 
     //este es el endpoint que devuelve las applications que tiene una oferta pero tengo el mismo problema
     //que para el edit, que no consigo pasarle la oferta. offerId está vacía
-    this.$http.get('http://localhost:8000/api/v2/applicationsOfOffer/'+ offerId,{ headers:
+    this.$http.get('https://api2-datame.herokuapp.com/api/v2/applicationsOfOffer/'+ offerId,{ headers:
       { Authorization: token }
       }).then((result) => {
         this.applications = result.data
@@ -266,7 +266,7 @@ export default {
        formApply.append("title", this.formApply.title);
        formApply.append("description", this.formApply.description);
        formApply.append("offerId", this.offerId);
-       this.$http.post('http://localhost:8000/api/v1/apply', formApply,{ headers:
+       this.$http.post('https://api2-datame.herokuapp.com/api/v1/apply', formApply,{ headers:
       { Authorization: token }
       }).then((result) => {
           alert(result.data.message)
@@ -287,7 +287,7 @@ export default {
       formData.append("files", this.form.files);
       formData.append("contract", this.form.contract);
       this.$http
-        .post("http://localhost:8000/api/v1/offer", formData, {
+        .post("https://api2-datame.herokuapp.com/api/v1/offer", formData, {
           headers: { Authorization: token }
         })
         .then(result => {
@@ -295,7 +295,7 @@ export default {
           var offer_created = result.data.offer_id;
           this.$http
             .get(
-              `http://localhost:8000/api/v1/pagos/create_papyal_payment/${offer_created}/`,
+              `https://api2-datame.herokuapp.com/api/v1/pagos/create_papyal_payment/${offer_created}/`,
               { headers: { Authorization: token } }
             )
             .then(result => {
@@ -310,7 +310,7 @@ export default {
       );
       if (confirm) {
         this.$http
-          .delete("http://localhost:8000/api/v1/company/offer/" + id, {
+          .delete("https://api2-datame.herokuapp.com/api/v1/company/offer/" + id, {
             headers: {
                 Authorization: token
                 }
@@ -323,7 +323,7 @@ export default {
       },
         onSubmit() {
           let token = `JWT ${this.$cookies.get('token')}`
-          this.$http.get(`http://localhost:8000/api/v1/offer?search=${this.form.search}`,{ headers:
+          this.$http.get(`https://api2-datame.herokuapp.com/api/v1/offer?search=${this.form.search}`,{ headers:
             { Authorization: token }}).then((result) => {
               this.items = result.data
             })
@@ -332,7 +332,7 @@ export default {
         const formData = new FormData();
         formData.append("title", this.formEdit.title);
         formData.append("description", this.formEdit.description);
-          this.$http.post('http://localhost:8000/api/v2/change_offer/' + this.offerId, formData,{ headers:
+          this.$http.post('https://api2-datame.herokuapp.com/api/v2/change_offer/' + this.offerId, formData,{ headers:
             { Authorization: token }}).then((result) => {
               this.items = result.data
             })

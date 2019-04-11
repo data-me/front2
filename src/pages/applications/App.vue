@@ -127,7 +127,7 @@ export default {
     }
 
     this.$http
-      .get("http://localhost:8000/api/v1/apply", {
+      .get("https://api2-datame.herokuapp.com/api/v1/apply", {
         headers: { Authorization: token }
       })
       .then(result => {
@@ -163,7 +163,7 @@ export default {
         formData.append("file", this.submitForm.file);
         formData.append("offerId", this.idOffer);
         this.$http
-          .post("http://localhost:8000/api/v1/submit", formData, {
+          .post("https://api2-datame.herokuapp.com/api/v1/submit", formData, {
             headers: { Authorization: token }
           })
           .then(result => {

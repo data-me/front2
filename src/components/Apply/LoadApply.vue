@@ -139,7 +139,7 @@ Vue.use(VueRouter)
       this.dsId = idDataScientist
       var token = 'JWT ' + this.$cookies.get('token')
       this.$http
-        .get("http://localhost:8000/api/v1/dataScientist?dataScientistId=" + idDataScientist, {
+        .get("https://api2-datame.herokuapp.com/api/v1/dataScientist?dataScientistId=" + idDataScientist, {
           headers: { Authorization: token }
         })
         .then(result => {
@@ -151,7 +151,7 @@ Vue.use(VueRouter)
           this.photo = this.user.photo;
           this.address = this.user.address;
         });
-      this.$http.get('http://localhost:8000/api/v1/cv?dataScientistId=' + idDataScientist,{ headers:
+      this.$http.get('https://api2-datame.herokuapp.com/api/v1/cv?dataScientistId=' + idDataScientist,{ headers:
         { Authorization: token }
       }).then((result) => {
         this.dss = result.data
@@ -171,7 +171,7 @@ Vue.use(VueRouter)
        var token = 'JWT ' + this.$cookies.get('token')
        var formAccept = new FormData()
        formAccept.append('applyId', id)
-       this.$http.post('http://localhost:8000/api/v1/check_submition', formAccept, { headers:
+       this.$http.post('https://api2-datame.herokuapp.com/api/v1/check_submition', formAccept, { headers:
       { Authorization: token }
       }).then((result) => {
           this.permissions = String (result.data.message)
@@ -188,7 +188,7 @@ Vue.use(VueRouter)
     },
       getOffer(offerId){
     var token = 'JWT ' + this.$cookies.get('token')
-    this.$http.get('http://localhost:8000/api/v1/offer?offerId=' + offerId,{ headers:
+    this.$http.get('https://api2-datame.herokuapp.com/api/v1/offer?offerId=' + offerId,{ headers:
       { Authorization: token }
       }).then((result) => {
         this.offertodl = result.data,
@@ -221,7 +221,7 @@ Vue.use(VueRouter)
        var token = 'JWT ' + this.$cookies.get('token')
        var formAccept = new FormData()
        formAccept.append('idApply', id)
-       this.$http.post('http://localhost:8000/api/v1/accept', formAccept, { headers:
+       this.$http.post('https://api2-datame.herokuapp.com/api/v1/accept', formAccept, { headers:
       { Authorization: token }
       }).then((result) => {
           alert("Successfully accepted apply")
@@ -232,7 +232,7 @@ Vue.use(VueRouter)
 
      deleteApplication(applicationId) {
        var token = 'JWT ' + this.$cookies.get('token')
-       this.$http.delete('http://localhost:8000/api/v2/application/' + applicationId, { headers: { Authorization: token }}).then((result) => {
+       this.$http.delete('https://api2-datame.herokuapp.com/api/v2/application/' + applicationId, { headers: { Authorization: token }}).then((result) => {
           if (result.data.code == '200') {
             alert(this.$t('delete_app_success'))
           }
