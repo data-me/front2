@@ -167,6 +167,18 @@ module.exports = {
     // extracted common chunks and vendor chunks.
     chunks: ['chunk-vendors', 'chunk-common', 'explore']
   },
+  'terms_and_conditions': {
+    // entry for the page
+    entry: 'src/pages/terms_and_conditions/main.js',
+    // the source template
+    template: 'public/index.html',
+    // when using title option,
+    // template title tag needs to be <title><%= htmlWebpackPlugin.options.title %></title>
+    title: 'Terms and conditions',
+    // chunks to include on this page, by default includes
+    // extracted common chunks and vendor chunks.
+    chunks: ['chunk-vendors', 'chunk-common', 'explore']
+  },
   'user_plan': {
     // entry for the page
     entry: 'src/pages/user_plan/main.js',
